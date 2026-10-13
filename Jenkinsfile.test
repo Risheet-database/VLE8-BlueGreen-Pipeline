@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Verify GitHub Checkout') {
+            steps {
+                echo 'Jenkins successfully loaded this pipeline from GitHub.'
+                sh 'pwd'
+                sh 'ls -la'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'GitHub integration test passed.'
+        }
+    }
+}
