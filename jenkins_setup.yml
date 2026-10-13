@@ -1,0 +1,24 @@
+---
+- name: Configure the VLE-8 DevOps environment
+  hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+    - name: Ensure Docker is installed
+      ansible.builtin.apt:
+        name: docker.io
+        state: present
+        update_cache: true
+
+    - name: Ensure Docker is running
+      ansible.builtin.service:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Ensure Jenkins is running
+      ansible.builtin.service:
+        name: jenkins
+        state: started
+        enabled: true
